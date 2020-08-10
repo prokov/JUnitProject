@@ -1,6 +1,8 @@
 package trackingServiceTest;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
@@ -18,13 +20,16 @@ public class ParametrizedTest {
 	int input;
 	int expected;
 
+
+
+
 	public ParametrizedTest(int input, int expected) {
 
 		this.input = input;
 		this.expected = expected;
 	}
 
-	@Parameters
+	@Parameters(name = "{index}: calculate ({0})")
 	public static List<Object[]> data() {
 		return Arrays.asList(new Object[][] {
 				{ 5, 5 }, { 5, 10 }, { -12, 0 }, { 50, 50 }, { 1, 51 }
@@ -35,8 +40,9 @@ public class ParametrizedTest {
 	public void testAddCalories(){
 		if (input>=0)  service.addCalories(input);
 		else service.removeCalories(-input);
-		
 		assertEquals(expected, service.getTotal());
+
+
 	}
 	
 	

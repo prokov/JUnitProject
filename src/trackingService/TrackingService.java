@@ -10,6 +10,8 @@ public class TrackingService {
 	private int historyId = 0;
 
 	public void removeCalories(int amount) {
+
+		if (amount < 0 ) throw new NumberFormatException();
 		total -= amount;
 		if (total < 0)
 			total = 0;
